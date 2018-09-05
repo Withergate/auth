@@ -41,11 +41,11 @@ repositories {
 }
 	
 jar {
-	baseName = 'auth-example'
+	baseName = 'withergate-auth'
 	version = '0.0.1-SNAPSHOT'
 }
 
-mainClassName = 'com.gigsterous.auth.AuthServer'
+mainClassName = 'com.withergate.auth.AuthServer'
 	
 // Checkstyle
 checkstyle {
