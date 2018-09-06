@@ -10,8 +10,8 @@ CREATE TABLE users (
     password VARCHAR(256),
     role VARCHAR(16),
     enabled BOOL NOT NULL,
-    confirmation_token VARCHAR(256),
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    confirmation_token VARCHAR(256)
+);
 
 /**
  * OAuth
@@ -30,7 +30,7 @@ CREATE TABLE oauth_client_details (
   refresh_token_validity INTEGER,
   additional_information VARCHAR(4096),
   autoapprove VARCHAR(255)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 DROP TABLE IF EXISTS oauth_client_token;
 CREATE TABLE oauth_client_token (
@@ -39,7 +39,7 @@ CREATE TABLE oauth_client_token (
   authentication_id VARCHAR(255) PRIMARY KEY,
   user_name VARCHAR(255),
   client_id VARCHAR(255)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 DROP TABLE IF EXISTS oauth_access_token;
 CREATE TABLE oauth_access_token (
@@ -50,20 +50,20 @@ CREATE TABLE oauth_access_token (
   client_id VARCHAR(255),
   authentication BLOB,
   refresh_token VARCHAR(255)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 DROP TABLE IF EXISTS oauth_refresh_token;
 CREATE TABLE oauth_refresh_token (
   token_id VARCHAR(255),
   token BLOB,
   authentication BLOB
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 DROP TABLE IF EXISTS oauth_code;
 CREATE TABLE oauth_code (
   code VARCHAR(255),
   authentication BLOB
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 DROP TABLE IF EXISTS oauth_approvals;
 CREATE TABLE oauth_approvals (
@@ -72,8 +72,8 @@ CREATE TABLE oauth_approvals (
     scope VARCHAR(255),
     status VARCHAR(10),
     expiresAt TIMESTAMP,
-    lastModifiedAt TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    lastModifiedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 DROP TABLE IF EXISTS ClientDetails;
 CREATE TABLE ClientDetails (
@@ -88,4 +88,4 @@ CREATE TABLE ClientDetails (
   refresh_token_validity INTEGER,
   additionalInformation VARCHAR(4096),
   autoApproveScopes VARCHAR(255)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);

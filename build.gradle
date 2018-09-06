@@ -85,8 +85,9 @@ dependencies {
 	
 	// Thymeleaf
 	compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
-	
-	// Tools
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter-sql-mysql', version: '1.0.0.M2'
+
+    // Tools
 	compile('org.flywaydb:flyway-core')
 	compileOnly('org.projectlombok:lombok')
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
