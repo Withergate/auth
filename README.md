@@ -1,10 +1,6 @@
-# Authentication Service
+# Withergate auth server
 
-This is an example authorization server written in Spring Boot 2. It is not meant to be used in production as it is but could be easily modified into a fully functional solution.
-
-This auth server could be extended to provide other resources and act as an resource server or it can be used with an existing resource server and only provide  authentication/authorization by managing user OAuth2 tokens.
-
-If you like this application and have questions or feature requests, feel free to contuct me at `m.myslik@gmail.com` or open an issue/PR.
+This is an authorization server used for the Withergate game. It is based on the [Gigsterous](https://github.com/gigsterous/auth-server) example project.
 
 ## 🌟 Features
 
@@ -41,12 +37,17 @@ In case you have an existing resource server written in Spring Boot and wish to 
 
 `security.oauth2.resource.userInfoUri=http://localhost:9000/auth/user`
 
+The auth server can be run in two profiles:
+
+- default (no profile filled): containes in-memory database for testing and local startup
+- live - used for cloud deployment to GCP, needs to have GOOGLE_APPLICATION_CREDENTIALS and database password injected in order to work
+
 ### 🤝 Authentication
 
 To authenticate, call:
 
 ```
-curl --user 'gigy:secret' \
+curl --user 'withergate:secret' \
 -d 'grant_type=password&username=john@example.com&password=password' \
 -X POST http://localhost:9000/auth/oauth/token
 ```
@@ -146,4 +147,4 @@ When this error occurs, user credentials have to be used in order to authenticat
 
 ## 🔖 License
 
-The code is released under the Apache 2.0 license. See [LICENSE](https://github.com/gigsterous/auth-server/blob/master/LICENSE) for details.
+The code is released under the Apache 2.0 license. See [LICENSE](https://github.com/Withergate/auth/blob/master/LICENSE) for details.
