@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       // Set login page
       .formLogin().loginPage(LOGIN).permitAll().defaultSuccessUrl(PROFILE).and()
       // These requests are permitted without authorization
-      .authorizeRequests().antMatchers("/", "/css/*", "/health", 
+      .authorizeRequests().antMatchers("/", "/css/*", "/health", "/images/*",
           LOGIN, REGISTER, CONFIRM, CONFIRM_REDIRECT, FORGOTTEN, VERIFY, ERROR)
           .permitAll()
       // These requests are secured by the following way

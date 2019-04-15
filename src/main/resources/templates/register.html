@@ -11,7 +11,7 @@
 		<form autocomplete="off" action="#" th:action="@{/register}"
 			th:object="${user}" method="post" class="form-signin" role="form"
 			data-toggle="validator">
-			
+
 			<h2 class="form-signin-heading" th:text="#{registration.header}"></h2>
 
 			<div th:if="${confirmationMessage}" class="alert alert-success"

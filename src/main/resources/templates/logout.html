@@ -9,22 +9,15 @@
 	<div layout:fragment="container">
 
       <form class="form-signin" role="form" th:action="@{/logout}" method="post">
-      
-      	<h2 class="form-signin-heading" th:text="#{logout.header}"></h2>
-
-        <button type="submit" class="btn btn-lg btn-primary btn-block" th:text="#{logout.buttonText}"></button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" th:text="#{logout.header}"></button>
       </form>
       
       <form class="form-signin" role="form" th:action="@{/globalLogout}" method="post">
-      
-      	<h2 class="form-signin-heading" th:text="#{logout.globalHeader}"></h2>
-      	
       	<div th:if="${confirmationMessage}" class="alert alert-success"
 				role="alert" th:text="${confirmationMessage}"></div>
 
-        <button type="submit" class="btn btn-lg btn-primary btn-block" th:text="#{logout.buttonText}"></button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" th:text="#{logout.globalHeader}"></button>
       </form>
-
 
   </div>
 
