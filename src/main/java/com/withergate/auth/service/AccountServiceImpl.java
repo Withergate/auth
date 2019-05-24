@@ -1,15 +1,14 @@
 package com.withergate.auth.service;
 
-import com.withergate.auth.AuthProperties;
-import com.withergate.auth.model.User;
-import com.withergate.auth.repository.UserRepository;
-
 import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.withergate.auth.AuthProperties;
+import com.withergate.auth.model.Role;
+import com.withergate.auth.model.User;
+import com.withergate.auth.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -57,10 +56,13 @@ public class AccountServiceImpl implements AccountService {
       user = loaded.get();
     }
 
-    // Disable user until they click on confirmation link in email
+    // set default role to the user
+    user.setRole(Role.USER);
+
+    // disable user until they click on confirmation link in email
     user.setEnabled(false);
 
-    // Generate random 36-character string token for confirmation link
+    // generate random 36-character string token for confirmation link
     user.setConfirmationToken(UUID.randomUUID().toString());
 
     userRepository.save(user);
@@ -89,7 +91,7 @@ public class AccountServiceImpl implements AccountService {
     User user = optionalUser.get();
 
     // Set new password
-    user.setPassword(passwordEncoder.encode((CharSequence) password));
+    user.setPassword(passwordEncoder.encode(password));
 
     // Set user to enabled
     user.setEnabled(true);
