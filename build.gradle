@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.1.RELEASE'
+		springBootVersion = '2.1.6.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -65,6 +65,11 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+
+group = 'com.withergate'
+version = '0.0.1'
+sourceCompatibility = 11
+targetCompatibility = 11
 	
 asciidoctor {
 	sourceDir 'src/main/asciidoc'
@@ -79,18 +84,24 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-security')
-    compile('org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.0.RELEASE')
+ 	compile('org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.5.RELEASE')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	
 	// Thymeleaf
 	compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter-sql-mysql', version: '1.0.0.M2'
 
-    // Tools
+	// Cloud SQL
+	compile('org.springframework.cloud:spring-cloud-gcp-starter-sql-mysql:1.0.0.M2')
+
+	// Tools
 	compile('org.flywaydb:flyway-core')
+
+	// Lombok
 	compileOnly('org.projectlombok:lombok')
-	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+	testCompileOnly('org.projectlombok:lombok')
+	annotationProcessor('org.projectlombok:lombok')
+	testAnnotationProcessor('org.projectlombok:lombok')
 	
 	// Local development
 	runtime('com.h2database:h2')
@@ -99,6 +110,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 	testCompile('org.springframework.security:spring-security-test')
-	testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: '2.10.1'	
+	testCompile('com.github.tomakehurst:wiremock-standalone:2.10.1')
 }
 

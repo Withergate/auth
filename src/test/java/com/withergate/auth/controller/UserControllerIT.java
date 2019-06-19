@@ -31,7 +31,7 @@ public class UserControllerIT {
     Set<HttpMethod> response = testRestTemplate.optionsForAllow("/user");
 
     // HEAD, GET
-    assertThat(response.size(), is(2));
+    assertThat(response.size(), is(3));
   }
 
   @Test

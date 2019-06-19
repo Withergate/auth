@@ -1,5 +1,6 @@
 package com.withergate.auth.config;
 
+import com.withergate.auth.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -9,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * <p>
@@ -31,10 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private static final String VERIFY = "/verifyEmail";
   private static final String ERROR = "/error";
 
-  private final UserDetailsService userService;
+  private final UserService userService;
   private final AuthenticationManager authenticationManager;
 
-  public WebSecurityConfig(UserDetailsService userService, @Lazy AuthenticationManager authenticationManager) {
+  public WebSecurityConfig(@Lazy UserService userService, @Lazy AuthenticationManager authenticationManager) {
     this.userService = userService;
     this.authenticationManager = authenticationManager;
   }
@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Override
-  public void configure(WebSecurity web) throws Exception {
+  public void configure(WebSecurity web) {
     web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
   }
 
@@ -70,8 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     auth.parentAuthenticationManager(authenticationManager);
     auth.userDetailsService(userService);
 
-    // nullify parent auth manager to prevent infinite loop when userDetails not
-    // found for username
+    // nullify parent auth manager to prevent infinite loop when userDetails not found for username
     auth.parentAuthenticationManager(null);
   }
 
