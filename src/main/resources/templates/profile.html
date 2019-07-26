@@ -11,6 +11,12 @@
 		<div class="center">
 			<ul class="list-group borderless">
 				<li class="list-group-item" style="border: none">
+					<a th:href="${gameUrl}">
+						<button class="btn btn-lg btn-success btn-block" th:text="#{game.enter}"></button>
+					</a>
+				</li>
+
+				<li class="list-group-item" style="border: none">
 					<a th:href="@{/changePassword}">
 						<button class="btn btn-lg btn-primary btn-block" th:text="#{password.header}"></button>
 					</a>

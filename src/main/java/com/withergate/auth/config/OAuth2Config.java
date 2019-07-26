@@ -20,7 +20,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  * <p>
  * OAuth2Config class.
  * </p>
- * 
+ *
  * @author Martin Myslik
  */
 @Configuration
@@ -28,44 +28,45 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
-  private final UserDetailsService userService;
-  private final TokenStore tokenStore;
-  private final DataSource dataSource;
-  private final AuthenticationManager authenticationManager;
+    private final UserDetailsService userService;
+    private final TokenStore tokenStore;
+    private final DataSource dataSource;
+    private final AuthenticationManager authenticationManager;
 
-  /**
-   * <p>
-   * OAuth2Config constructor.
-   * </p>
-   */
-  public OAuth2Config(UserDetailsService userService, TokenStore tokenStore, DataSource dataSource,
-      @Lazy AuthenticationManager authenticationManager) {
-    this.userService = userService;
-    this.tokenStore = tokenStore;
-    this.dataSource = dataSource;
-    this.authenticationManager = authenticationManager;
-  }
+    /**
+     * <p>
+     * OAuth2Config constructor.
+     * </p>
+     */
+    public OAuth2Config(
+            UserDetailsService userService, TokenStore tokenStore, DataSource dataSource, @Lazy AuthenticationManager authenticationManager
+    ) {
+        this.userService = userService;
+        this.tokenStore = tokenStore;
+        this.dataSource = dataSource;
+        this.authenticationManager = authenticationManager;
+    }
 
-  @Bean
-  public BCryptPasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-  @Override
-  public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-    security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
-  }
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+    }
 
-  @Override
-  public void configure(AuthorizationServerEndpointsConfigurer configurer) throws Exception {
-    configurer.authenticationManager(authenticationManager);
-    configurer.userDetailsService(userService);
-    configurer.tokenStore(tokenStore);
-  }
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer configurer) throws Exception {
+        configurer.authenticationManager(authenticationManager);
+        configurer.userDetailsService(userService);
+        configurer.tokenStore(tokenStore);
+    }
 
-  @Override
-  public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-    clients.jdbc(dataSource);
-  }
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        clients.jdbc(dataSource);
+    }
 
 }

@@ -12,17 +12,17 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
  * <p>
  * JDBCTokenStoreConfig class. Configures data source for tokens.
  * </p>
- * 
+ *
  * @author Martin Myslik
  */
 @Configuration
 public class JDBCTokenStoreConfig {
 
-  @Autowired
-  private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-  @Bean
-  public TokenStore tokenStore() {
-    return new JdbcTokenStore(dataSource);
-  }
+    @Bean
+    public TokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
+    }
 }

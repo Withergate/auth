@@ -25,7 +25,7 @@
       <property name="allowNonPrintableEscapes" value="true"/>
     </module>
     <module name="LineLength">
-      <property name="max" value="120"/><!-- Exception to Google rules -->
+      <property name="max" value="140"/><!-- Exception to Google rules -->
       <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
     </module>
     <module name="AvoidStarImport"/>
@@ -35,7 +35,6 @@
       <property name="option" value="TEXT"/>
       <property name="tokens" value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
     </module>
-    <module name="NeedBraces"/>
     <module name="LeftCurly"/>
     <module name="RightCurly">
       <property name="id" value="RightCurlySame"/>
@@ -145,21 +144,8 @@
       <message key="ws.notPreceded"
         value="GenericWhitespace ''{0}'' is not preceded with whitespace."/>
     </module>
-    <module name="Indentation">
-      <property name="basicOffset" value="2"/>
-      <property name="braceAdjustment" value="0"/>
-      <property name="caseIndent" value="2"/>
-      <property name="throwsIndent" value="4"/>
-      <property name="lineWrappingIndentation" value="4"/>
-      <property name="arrayInitIndent" value="2"/>
-    </module>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="VariableDeclarationUsageDistance"/>
-    <module name="CustomImportOrder">
-      <property name="sortImportsInGroupAlphabetically" value="true"/>
-      <property name="separateLineBetweenGroups" value="true"/>
-      <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>
-    </module>
     <module name="MethodParamPad"/>
     <module name="ParenPad"/>
     <module name="OperatorWrap">
@@ -213,7 +199,5 @@
     <module name="CommentsIndentation"/>
     
   </module>
-  
-  <!-- TODO - Header with License -->
 
 </module>

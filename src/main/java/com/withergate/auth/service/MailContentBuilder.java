@@ -9,35 +9,35 @@ import org.thymeleaf.context.Context;
  * <p>
  * MailContentBuilder class.
  * </p>
- * 
+ *
  * @author Martin Myslik
  */
 @Service
 public class MailContentBuilder {
 
-  private TemplateEngine templateEngine;
+    private TemplateEngine templateEngine;
 
-  /**
-   * <p>
-   * MailContentBuilder constructor.
-   * </p>
-   */
-  @Autowired
-  public MailContentBuilder(TemplateEngine templateEngine) {
-    this.templateEngine = templateEngine;
-  }
+    /**
+     * <p>
+     * MailContentBuilder constructor.
+     * </p>
+     */
+    @Autowired
+    public MailContentBuilder(TemplateEngine templateEngine) {
+        this.templateEngine = templateEngine;
+    }
 
-  /**
-   * <p>
-   * Populate email template with custom message.
-   * </p>
-   */
-  public String build(String message, String link) {
-    Context context = new Context();
-    context.setVariable("message", message);
-    context.setVariable("link", link);
+    /**
+     * <p>
+     * Populate email template with custom message.
+     * </p>
+     */
+    public String build(String message, String link) {
+        Context context = new Context();
+        context.setVariable("message", message);
+        context.setVariable("link", link);
 
-    return templateEngine.process("mail/mail", context);
-  }
+        return templateEngine.process("mail/mail", context);
+    }
 
 }
