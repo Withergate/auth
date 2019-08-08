@@ -10,8 +10,8 @@ import com.withergate.auth.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -52,7 +52,7 @@ public class RegisterController {
      * Return ModelAndView for registration page.
      * </p>
      */
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping("/register")
     public ModelAndView showRegistrationPage(ModelAndView modelAndView, User user) {
         modelAndView.addObject("user", user);
         modelAndView.setViewName(REGISTER);
@@ -65,7 +65,7 @@ public class RegisterController {
      * Process input data from registration form and validate them.
      * </p>
      */
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping("/register")
     public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid User user, Locale locale) {
         log.debug("User registration - POST");
 
@@ -93,7 +93,7 @@ public class RegisterController {
      * Return ModelAndView for confirmation page.
      * </p>
      */
-    @RequestMapping(value = "/confirm", method = RequestMethod.GET)
+    @GetMapping("/confirm")
     public ModelAndView showConfirmationPage(
             ModelAndView modelAndView,
             @RequestParam("token") String token,
@@ -133,7 +133,7 @@ public class RegisterController {
      * Return Redirection to confirm page. This endpoint is used for mobile page
      * </p>
      */
-    @RequestMapping(value = "/confirmRedirect", method = RequestMethod.GET)
+    @GetMapping("/confirmRedirect")
     public String showRedirectConfirmationPage(@RequestParam("token") String token) {
 
         return "redirect:/confirm?token=" + token;
@@ -144,7 +144,7 @@ public class RegisterController {
      * Process input data from confirmation page.
      * </p>
      */
-    @RequestMapping(value = "/confirm", method = RequestMethod.POST)
+    @PostMapping(value = "/confirm")
     public ModelAndView processConfirmationForm(
             ModelAndView modelAndView,
             @RequestParam("token") String token,

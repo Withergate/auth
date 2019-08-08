@@ -18,7 +18,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,11 +60,11 @@ public class UserController {
      * @param principal containing security context
      * @return user
      */
-    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    @GetMapping("/user")
     public User getUser(Principal principal) {
         Optional<User> optionalUser = userRepo.findOneByEmail(principal.getName());
 
-        if (!optionalUser.isPresent()) {
+        if (optionalUser.isEmpty()) {
             throw new UsernameNotFoundException("User for principal not found!");
 
         }
