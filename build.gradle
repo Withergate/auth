@@ -92,7 +92,7 @@ dependencies {
 	compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
 
 	// Cloud SQL
-	compile('org.springframework.cloud:spring-cloud-gcp-starter-sql-mysql:1.0.0.M2')
+	compile('org.springframework.cloud:spring-cloud-gcp-starter-sql-mysql:1.1.2.RELEASE')
 
 	// Tools
 	compile('org.flywaydb:flyway-core')
