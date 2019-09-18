@@ -1,5 +1,9 @@
 package com.withergate.auth.service;
 
+import javax.mail.internet.InternetAddress;
+
+import com.withergate.auth.AuthProperties;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,21 +19,13 @@ import org.springframework.stereotype.Service;
  * @author Martin Myslik
  */
 @Slf4j
+@AllArgsConstructor
 @Service
 public class EmailService {
 
     private final JavaMailSender mailSender;
     private final MailContentBuilder mailContentBuilder;
-
-    /**
-     * <p>
-     * EmailService constructor.
-     * </p>
-     */
-    public EmailService(JavaMailSender mailSender, MailContentBuilder mailContentBuilder) {
-        this.mailSender = mailSender;
-        this.mailContentBuilder = mailContentBuilder;
-    }
+    private final AuthProperties properties;
 
     /**
      * <p>
@@ -37,10 +33,10 @@ public class EmailService {
      * </p>
      */
     @Async
-    public void prepareAndSend(String to, String from, String subject, String message, String link) {
+    public void prepareAndSend(String to, String subject, String message, String link) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setFrom(from);
+            messageHelper.setFrom(new InternetAddress(properties.getEmailFrom(), properties.getEmailFromName()));
             messageHelper.setTo(to);
             messageHelper.setSubject(subject);
 

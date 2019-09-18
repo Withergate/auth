@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 
 import javax.mail.MessagingException;
 
+import com.withergate.auth.AuthProperties;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -26,12 +27,16 @@ public class EmailServiceTest {
   public void setUp() {
     MockitoAnnotations.initMocks(this);
 
-    emailService = new EmailService(mailSender, contentBuilder);
+    AuthProperties properties = new AuthProperties();
+    properties.setEmailFrom("test@tets.com");
+    properties.setEmailFromName("Test");
+
+    emailService = new EmailService(mailSender, contentBuilder, properties);
   }
 
   @Test
-  public void testGivenEmailServiceWhenSendingEmailThenVerifyEmailSentThroughMailSender() throws MessagingException {
-    emailService.prepareAndSend("john@example.com", "noreply@example.com", "test", "Hello!", "http://www.example.com");
+  public void testGivenEmailServiceWhenSendingEmailThenVerifyEmailSentThroughMailSender() {
+    emailService.prepareAndSend("john@example.com", "test", "Hello!", "http://www.example.com");
 
     verify(mailSender).send(any(MimeMessagePreparator.class));
   }

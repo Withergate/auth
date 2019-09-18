@@ -20,6 +20,7 @@ public class AuthProperties {
 
     private String redirectionUrl;
     private String emailFrom;
+    private String emailFromName;
     private String corsAllowedOrigins;
     private String gameUrl;
 

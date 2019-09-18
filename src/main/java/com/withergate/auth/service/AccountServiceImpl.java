@@ -78,7 +78,7 @@ public class AccountServiceImpl implements AccountService {
         String message = messages.getMessage("email.registration", null, locale);
         String link = properties.getRedirectionUrl() + "/confirmRedirect?token=" + user.getConfirmationToken();
 
-        emailService.prepareAndSend(user.getEmail(), properties.getEmailFrom(), "Registration confirmation", message, link);
+        emailService.prepareAndSend(user.getEmail(),"Registration confirmation", message, link);
 
     }
 
@@ -144,7 +144,7 @@ public class AccountServiceImpl implements AccountService {
         String message = messages.getMessage("email.resetPassword", null, locale);
         String link = properties.getRedirectionUrl() + "/confirmRedirect?token=" + user.getConfirmationToken();
 
-        emailService.prepareAndSend(user.getEmail(), properties.getEmailFrom(), "Password reset", message, link);
+        emailService.prepareAndSend(user.getEmail(), "Password reset", message, link);
 
         // update user entity
         userRepository.save(user);
@@ -213,7 +213,7 @@ public class AccountServiceImpl implements AccountService {
             String message = messages.getMessage("email.verification", null, locale);
             String link = properties.getRedirectionUrl() + "/verifyEmail?token=" + user.getConfirmationToken();
 
-            emailService.prepareAndSend(newEmail, properties.getEmailFrom(), "E-mail change", message, link);
+            emailService.prepareAndSend(newEmail, "E-mail change", message, link);
 
             userRepository.save(user);
 

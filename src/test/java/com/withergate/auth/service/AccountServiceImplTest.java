@@ -139,7 +139,7 @@ public class AccountServiceImplTest {
     accountService.registerUser(user, Locale.ENGLISH);
 
     // then email was sent
-    verify(emailService).prepareAndSend(mailMessageCaptor.capture(), eq("noreply@example.com"),
+    verify(emailService).prepareAndSend(mailMessageCaptor.capture(),
         eq("Registration confirmation"), any(), any(String.class));
 
     assertThat(mailMessageCaptor.getValue(), is("user@example.com"));
@@ -161,7 +161,7 @@ public class AccountServiceImplTest {
     accountService.registerUser(user, Locale.ENGLISH);
 
     // then email was sent
-    verify(emailService).prepareAndSend(eq("user@example.com"), eq("noreply@example.com"),
+    verify(emailService).prepareAndSend(eq("user@example.com"),
         eq("Registration confirmation"), mailMessageCaptor.capture(), any(String.class));
 
     assertThat(mailMessageCaptor.getValue(), is("Registration email"));
@@ -238,7 +238,7 @@ public class AccountServiceImplTest {
     accountService.resetPassword(temp, Locale.ENGLISH);
 
     // then email was sent
-    verify(emailService).prepareAndSend(mailMessageCaptor.capture(), eq("noreply@example.com"), eq("Password reset"),
+    verify(emailService).prepareAndSend(mailMessageCaptor.capture(), eq("Password reset"),
         any(), any(String.class));
 
     assertThat(mailMessageCaptor.getValue(), is("user@example.com"));
@@ -349,7 +349,7 @@ public class AccountServiceImplTest {
     accountService.changeEmail("user@example.com", "password", "user2@example.com", Locale.ENGLISH);
 
     // then email was sent
-    verify(emailService).prepareAndSend(eq("user2@example.com"), eq("noreply@example.com"), eq("E-mail change"), any(),
+    verify(emailService).prepareAndSend(eq("user2@example.com"), eq("E-mail change"), any(),
         any(String.class));
   }
 
