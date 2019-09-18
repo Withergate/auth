@@ -54,14 +54,14 @@ public interface AccountService {
      * Change password for given user.
      * </p>
      */
-    public boolean changePassword(String username, String oldPassword, String newPassword);
+    public boolean changePassword(String email, String oldPassword, String newPassword);
 
     /**
      * <p>
      * Change email for given user.
      * </p>
      */
-    public boolean changeEmail(String username, String password, String newEmail, Locale locale);
+    public boolean changeEmail(String email, String password, String newEmail, Locale locale);
 
     /**
      * <p>
