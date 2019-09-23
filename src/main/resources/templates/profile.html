@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/default}">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
 
 <body>
 
-	<div layout:fragment="container">
+<div layout:fragment="container">
 
-		<div class="center">
-			<ul class="list-group borderless">
-				<li class="list-group-item" style="border: none">
-					<a th:href="${gameUrl}">
-						<button class="btn btn-lg btn-success btn-block" th:text="#{game.enter}"></button>
-					</a>
-				</li>
+    <div class="center">
+        <ul class="list-group borderless">
+            <li class="list-group-item" style="border: none">
+                <a th:href="${gameUrl}">
+                    <button class="btn btn-lg btn-success btn-block" th:text="#{game.enter}"></button>
+                </a>
+            </li>
 
-				<li class="list-group-item" style="border: none">
-					<a th:href="@{/changePassword}">
-						<button class="btn btn-lg btn-primary btn-block" th:text="#{password.header}"></button>
-					</a>
-				</li>
-				<li class="list-group-item" style="border: none">
-					<a th:href="@{/changeEmail}">
-						<button class="btn btn-lg btn-primary btn-block" th:text="#{changeEmail.header}"></button>
-					</a>
-				</li>
-				<li class="list-group-item" style="border: none">
-					<a th:href="@{/deleteAccount}">
-						<button class="btn btn-lg btn-primary btn-block" th:text="#{delete.header}"></button>
-					</a>
-				</li>
-			</ul>
-		</div>
+            <li class="list-group-item" style="border: none">
+                <a th:href="@{/changePassword}">
+                    <button class="btn btn-lg btn-primary btn-block" th:text="#{password.header}"></button>
+                </a>
+            </li>
+            <li class="list-group-item" style="border: none">
+                <a th:href="@{/changeEmail}">
+                    <button class="btn btn-lg btn-primary btn-block" th:text="#{changeEmail.header}"></button>
+                </a>
+            </li>
+            <li class="list-group-item" style="border: none">
+                <a th:href="@{/deleteAccount}">
+                    <button class="btn btn-lg btn-primary btn-block" th:text="#{delete.header}"></button>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-	</div>
-	<!-- /container -->
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</div>
+<!-- /container -->
 </body>
 </html>
