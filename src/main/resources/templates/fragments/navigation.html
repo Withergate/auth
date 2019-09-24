@@ -4,9 +4,9 @@
             <a class="navbar-brand" href="/profile">Auth server</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a th:href="@{/login}" th:text="#{login.header}"></a></li>
-            <li><a th:href="@{/register}" th:text="#{registration.header}"></a></li>
-            <li><a th:href="@{/logout}" th:text="#{logout.header}"></a></li>
+            <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="#{login.header}"></a></li>
+            <li sec:authorize="isAnonymous()"><a th:href="@{/register}" th:text="#{registration.header}"></a></li>
+            <li sec:authorize="!isAnonymous()"><a th:href="@{/logout}" th:text="#{logout.header}"></a></li>
         </ul>
 
     </div>

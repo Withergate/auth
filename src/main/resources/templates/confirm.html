@@ -12,8 +12,7 @@
          th:text="${invalidToken}"></div>
 
     <form th:if="!${invalidToken}" class="form-signin" id="passwordForm"
-          role="form" action="#" th:object="${setPassword}"
-          th:action="@{/confirm}" method="post">
+          role="form" action="#" th:action="@{/confirm}" method="post">
 
         <h2 class="form-signin-heading">Password setup</h2>
 
@@ -23,7 +22,7 @@
         <input type="hidden" name="token" th:value="${confirmationToken}"/>
 
         <div th:if="${successMessage}">
-            <a th:href="@{${loginLink}}" class="btn btn-lg btn-primary btn-block">Login</a>
+            <a th:href="@{${loginLink}}" class="btn btn-lg btn-primary btn-block" th:text="#{login.header}"></a>
             <br/>
         </div>
 
@@ -35,7 +34,7 @@
                         class="glyphicon glyphicon-lock"></span>
 				</span>
             <input name="password" type="password" id="password"
-                   placeholder="Password" class="form-control" required="true"/>
+                   th:placeholder="#{password.newPasswordPlaceholder}" class="form-control" required="true"/>
             <span class="glyphicon" aria-hidden="true"></span>
         </div>
 
@@ -44,13 +43,14 @@
 					<span class="glyphicon glyphicon-lock"></span>
 				</span>
             <input type="password" class="form-control"
-                   id="signup-password-confirm" placeholder="Confirm Password"
-                   name="confirmPassword" required="true"/>
+                   id="signup-password-confirm"
+                   th:placeholder="#{password.confirmPasswordPlaceholder}" required="true"/>
 
             <div class="help-block with-errors"></div>
         </div>
 
-        <button th:if="!${successMessage}" type="submit" class="btn btn-lg btn-primary btn-block">Save</button>
+        <button th:if="!${successMessage}" type="submit" class="btn btn-lg btn-primary btn-block"
+                th:text="#{button.save}"></button>
 
     </form>
 
