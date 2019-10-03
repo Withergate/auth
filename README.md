@@ -71,8 +71,8 @@ Access Token has a limited validity. Once expired, the Refresh Token can be used
 To refresh the Access Token, simply call:
 
 ```
-curl -i --user 'gigy:secret' \
--d "grant_type=refresh_token&client_id=gigy&client_secret=secret&refresh_token=98eb7a5f-5aee-4a96-b173-239401ea78d4" \
+curl -i --user 'withergate:secret' \
+-d "grant_type=refresh_token&client_id=withergate&client_secret=secret&refresh_token=98eb7a5f-5aee-4a96-b173-239401ea78d4" \
 -X POST http://localhost:9000/auth/oauth/token
 ```
 

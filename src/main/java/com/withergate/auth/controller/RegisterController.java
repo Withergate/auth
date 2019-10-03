@@ -34,6 +34,9 @@ public class RegisterController {
     private static final String CONFIRMATION_MESSAGE = "confirmationMessage";
     private static final String ERROR_MESSAGE = "errorMessage";
 
+    private static final String INVALID_TOKEN ="invalidToken";
+    private static final String CONFIRMATION_TOKEN ="confirmationToken";
+
     private final AccountService accountService;
     private final MessageSource messages;
 
@@ -117,9 +120,9 @@ public class RegisterController {
         if (!optionalUser.isPresent()) { // No token found in DB
             log.debug("No user found for this token: {}", token);
 
-            modelAndView.addObject("invalidToken", messages.getMessage("registration.invalidToken", null, locale));
+            modelAndView.addObject(INVALID_TOKEN, messages.getMessage("registration.invalidToken", null, locale));
         } else { // Token found
-            modelAndView.addObject("confirmationToken", optionalUser.get().getConfirmationToken());
+            modelAndView.addObject(CONFIRMATION_TOKEN, optionalUser.get().getConfirmationToken());
         }
 
         // mobile param to model and view
