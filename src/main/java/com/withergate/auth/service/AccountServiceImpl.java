@@ -68,7 +68,9 @@ public class AccountServiceImpl implements AccountService {
         user.setEnabled(false);
 
         // generate random 36-character string token for confirmation link
-        user.setConfirmationToken(UUID.randomUUID().toString());
+        if (user.getConfirmationToken() == null) {
+            user.setConfirmationToken(UUID.randomUUID().toString());
+        }
 
         userRepository.save(user);
 
